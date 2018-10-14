@@ -1,0 +1,50 @@
+<footer>
+    <div class="footer">
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+              <h1>MENU</h1>
+              <ul class="column list-unstyled">
+                <li><a href="#">Trang Chủ</a></li>
+                <li><a href="#">Phim Đang Chiếu</a></li>
+                <li><a href="#">Tin Tức</a></li>
+              </ul>
+            </div>
+            
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+              <h1>Tài Khoản</h1>
+              <ul class="column list-unstyled">
+                <div *ngIf="!islogin; else dadangnhap">
+                    <app-modal-login></app-modal-login>
+                </div>
+                
+              </ul>
+            </div>
+             
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+              <div class="row">
+                  <div class="social text-center ikonlar">
+                      <a href="#"><span class="fa fa-facebook-square"></span></a>
+
+                      <a href="#"><span class="fa fa-youtube-square"></span></a>
+
+                    </div>
+              </div>  
+              <div class="row">
+                  <div class="social  text-center">
+                     <h4> CyperPhim</h4>
+                  </div>
+                 
+                </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+     
+           
+        
+</footer>
+<ng-template #dadangnhap>
+  <li><app-info-user></app-info-user></li>
+  <li><a [routerLink]="['/admin']">Admin</a></li>
+</ng-template>

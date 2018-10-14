@@ -1,0 +1,31 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">CyberPhim</a>
+      <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">News</a>
+          </li>
+          <li *ngIf="islogin" class="nav-item">
+            <app-info-user></app-info-user>
+          </li>
+  
+        </ul>
+        <div class="input-group my-2 mr-3 my-lg-0">
+           
+            
+          </div>
+        <div class="nav-item dropdown">
+          <app-modal-login></app-modal-login>
+        </div>
+      </div>
+    </nav>
+  </header>

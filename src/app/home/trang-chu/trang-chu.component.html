@@ -1,0 +1,203 @@
+<section>
+    <app-header></app-header>
+</section>
+<app-carouse-home></app-carouse-home>
+<section class="mt-5">
+  <div class="row">
+    <div class="search-container mgauto">
+      <div class="col-xs-10 col-xs-offset-1 ">
+          <div id="custom-search-input">
+            <div class="input-group">
+              <!-- <input name="search" type="text" class="search-query form-control" id='search' placeholder="Search for a state" [(ngModel)]="queryString" (click)="openDropDown()" />
+              <span class="input-group-btn">
+                <button type="button" disabled>
+                  <span class="fa fa-search"></span>
+                </button>
+              </span> -->
+              <select class="form-control text-center" (change)="TimPhim($event.target.value)">
+                  <option *ngFor="let p of dsPhim" value='{{p.MaPhim}}'>
+                    {{p.TenPhim}}</option>
+               </select>
+               <a class="btn btn-success" [routerLink]="['/home/chitiet']" [queryParams]="{id:idparam}">Tìm</a>
+            </div>
+            <!-- <div>
+                <div *ngIf="showDropDown"  class="search-dropdown" >
+                    <div (click)='selectValue(s)'  *ngFor="let s of dsPhim | timkiem: queryString:'s.TenPhim'">
+                        <div class="search-dropdown-inner">                         
+                                {{s.TenPhim}}
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+          </div>
+      
+        </div>
+        </div>
+        </div>
+        </section>
+
+
+<!-- <div class="container">
+    <ngx-carousel [inputs]="Config">
+    <ngx-item  *ngFor="let phim of dsPhim" NgxCarouselItem>
+      <div class="p-2 movie-container">
+        <div class="card-block">
+          <div class="img-card">
+            <img [src]='phim.HinhAnh' alt="Movie" class="w-100" />
+          </div>
+          <p class="tagline card-text text-xs-center truncate-text demission">{{phim.MoTa}}</p>
+          <a class="btn btn-outline-success btn-block" [routerLink]="['/chitiet']" [queryParams]="{id:phim.MaPhim}"><i class="fa fa-eye"></i> Mua Vé</a>
+        </div>
+      </div>
+    </ngx-item>
+    <button NgxCarouselPrev class="leftRs">&lt;</button>
+    <button NgxCarouselNext class=" carousel-control-prev">&gt;</button>
+  </ngx-carousel>
+  </div> -->
+<section class="mt-5 gachchan pb-5">
+  <div class="container">
+    <div class="text-center headerPhim">
+      <h1>Phim Đang Chiếu</h1>
+    </div>
+    <ngx-carousel [inputs]="Config">
+      <ngx-item *ngFor="let phim of dsPhim" NgxCarouselItem>
+        <div class="movie-card">
+          <div class="movie-header " [ngStyle]="{'background-image': 'url('+phim.HinhAnh+')'}">
+            <div class="header-icon-container">
+
+              <a href="#" (click)="openVerticallyCentered(content,phim.Trailer)">
+                <i class="material-icons header-icon"></i>
+              </a>
+            </div>
+          </div>
+          <!--movie-header-->
+          <div class="movie-content">
+            <div class="movie-content-header">
+              <a href="#">
+                <h3 class="movie-title">{{phim.TenPhim}}</h3>
+              </a>
+
+            </div>
+            <div class="movie-info">
+              <div class="info-section">
+                <label>Date & Time</label>
+                <span>Sun 8 Sept - 10:00PM</span>
+              </div>
+              <!--date,time-->
+              <div class="info-section">
+                <label>Screen</label>
+                <span>03</span>
+              </div>
+              <!--screen-->
+              <div class="info-section">
+                <label>Row</label>
+                <span>F</span>
+              </div>
+              <!--row-->
+              <div class="info-section">
+                <label>Seat</label>
+                <span>21,22</span>
+              </div>
+              <!--seat-->
+            </div>
+          </div>
+          <!--movie-content-->
+          <a class="btn btn-outline-success btn-block" [routerLink]="['/home/chitiet']" [queryParams]="{id:phim.MaPhim}">
+            <i class="fa fa-eye"></i> Mua Vé</a>
+          <!-- modal trailer -->
+
+        </div>
+        <!--movie-card-->
+      </ngx-item>
+      <a NgxCarouselPrev class="left carousel-control">
+        <span class="glyphicon glyphicon-chevron-left">
+          <i class="fa fa-arrow-left"></i>
+        </span>
+      </a>
+      <a NgxCarouselNext class="right carousel-control">
+        <span class="glyphicon glyphicon-chevron-right">
+          <i class="fa fa-arrow-right"></i>
+        </span>
+      </a>
+    </ngx-carousel>
+  </div>
+  <ng-template #content let-c="close" let-d="dismiss">
+
+    <div class="modal-body">
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <iframe width="770" height="480" [src]='TrailerPhim | safe' frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </ng-template>
+</section>
+<!-- Tin Tức -->
+<section class="gachchan pt-5 pb-5">
+  <div class="container">
+    <div class=" headerPhim text-center">
+        <h1>Tin Tức</h1>
+    </div>
+    <!-- bat dat news-->
+    <div class="row">
+        <div class="col-lg-6 portfolio-item p-2">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top imgnews" src="../../../assets/images/018.jpg" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Phim cá mập của Jason Statham bị lược gần hết cảnh máu me, bạo lực</a>
+              </h4>
+              <p class="card-text">Cả ngôi sao và đạo diễn của “The Meg” tỏ ra tiếc nuối khi đội ngũ nhà sản xuất hướng tới nhãn PG-13, và khiến thành phẩm thiếu đi sự máu me thường thấy của thể loại.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 portfolio-item p-2">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top imgnews" src="../../../assets/images/JOHNNY2jumbo.jpg" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">8 bộ phim điệp viên hài hước, thú vị không thể bỏ lỡ</a>
+              </h4>
+              <p class="card-text">Trước khi hai nữ điệp viên tay mơ trong "Bạn trai cũ tôi là điệp viên" tung hoành trên màn ảnh, khán giả đã nhiều lần được cười sảng khoái với các bộ phim điệp viên hài hước.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 portfolio-item p-2">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top imgnews" src="../../../assets/images/awar.jpg" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">Phim siêu anh hùng thống lĩnh giải thưởng Teen Choice Awards 2018</a>
+              </h4>
+              <p class="card-text">Các bom tấn siêu anh hùng nổi bật trong năm qua như "Avengers: Infinity War", "Black Panther", "Jurassic World 2" đều lần lượt được xướng tên tại Teen Choice Awards 2018.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 portfolio-item p-2">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top imgnews" src="../../../assets/images/kingsman.jpg" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">'Kingsman 3' bấm máy, hé lộ tiền truyện của tổ chức điệp viên bí mậtr</a>
+              </h4>
+              <p class="card-text">Theo tiết lộ, phần 3 của "Kingsman" sẽ là kết thúc của cặp chú cháu Harry - Eggsy, đồng thời hé mở lịch sử tổ chức.</p>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+        <div class="row">
+            <div class="mgauto">
+                <button type="button" class="btn btn-outline-info">Xem Thêm <i class="fa fa-angle-down"></i></button>
+            </div>
+              
+          </div>
+<!-- end news -->
+  </div>
+</section>
+<section>
+  <div class="bgfooter">
+
+  </div>
+  <app-footer></app-footer>
+</section>

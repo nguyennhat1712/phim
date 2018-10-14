@@ -1,0 +1,186 @@
+<div class="row">
+  <button class="btn btn-success" (click)="openVerticallyCentered(them,phim)">+ Thêm Phim</button>
+</div>
+<div class="row scrooll" >
+  <div class="col">
+    <table #tablePhim class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Mã Phim</th>
+          <th scope="col">Tên Phim</th>
+          <th scope="col">Hình Ảnh</th>
+          <th scope="col">Mô Tả</th>
+          <th scope="col">Mã Nhóm</th>
+          <th scope="col">Ngày Khởi Chiếu</th>
+          <th scope="col">Đánh Giá</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let phim of dsPhim">
+          <th scope="row">{{phim.MaPhim}}</th>
+          <td>{{phim.TenPhim}}</td>
+          <td>
+            <img style="width:50px; height: 50px;" [src]='phim.HinhAnh'>
+          </td>
+          <td>{{phim.MoTa}}</td>
+          <td>{{phim.MaNhom}}</td>
+          <td>{{phim.NgayKhoiChieu | date : "dd/MM/yyyy"}}</td>
+          <td>@{{phim.DanhGia}}</td>
+          <td>
+            <button class="btn btn-info " (click)="openVerticallyCenteredCapNhat(capnhat,phim.MaPhim)">Cập Nhật</button>
+
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="btnXoaPhim(phim.MaPhim)">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+<!-- model Cập Nhật -->
+<ng-template #capnhat let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3>Cập Nhật</h3>
+    <button type="button" id="close" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form #formCapNhat='ngForm' (ngSubmit)="CapNhatPhim(formCapNhat.value)">
+          <div class="form-group">
+            <input type="text" class="form-control input-lg" [pattern]='"^[a-zA-Z0-9_-]{3,25}$"' #tenphim='ngModel' required placeholder="Tên Phim" name="TenPhim" [(ngModel)]="phimCapNhat.TenPhim"  />
+            <div *ngIf="tenphim.errors && (tenphim.touched || tenphim.dirty)">
+              <div class="alert alert-danger" *ngIf="tenphim.errors.required">
+                Vui Lòng Nhập Tên Phim!!!
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="textarea" class="form-control input-lg"  [pattern]='"^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"' #mota='ngModel' required placeholder="Mô Tả" name="MoTa" [(ngModel)]="phimCapNhat.MoTa"  />
+            <div *ngIf="mota.errors && (mota.touched || mota.dirty)">
+                <div class="alert alert-danger" *ngIf="mota.errors.required">
+                  Vui Lòng Nhập Mật Khẩu!!!
+                </div>
+              </div>
+          </div>
+          <div class="form-group">
+            <input type="date" class="form-control input-lg" #ngaychieu='ngModel'   name="NgayKhoiChieu" ngModel  />
+            <!-- <div *ngIf="ngaychieu.errors && (ngaychieu.touched || ngaychieu.dirty)">
+                <div class="alert alert-danger" *ngIf="ngaychieu.errors.required">
+                  Vui Lòng Chọn ngày!!!
+                </div>
+              </div> -->
+          </div>
+          <div class="form-group">
+              <input type="text" class="form-control input-lg"  #trailer='ngModel' placeholder="Trailer" name="Trailer" [(ngModel)]="phimCapNhat.Trailer"  />
+              <!-- <div *ngIf="tenphim.errors && (tenphim.touched || tenphim.dirty)">
+                <div class="alert alert-danger" *ngIf="tenphim.errors.required">
+                  Vui Lòng Chọn trailer!!!
+                </div>
+                
+                copy lên trên
+                [pattern]='"^[a-z0-9_-]{3,25}$"'
+              </div> -->
+            </div>          
+            <div class="form-group">
+              <input type="radio" name="MaNhom" [(ngModel)]="phimCapNhat.MaNhom" value="GP01">GP01
+              </div>
+              <div class="form-group">
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="1">1
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="2">2
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="3">3
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="4">4
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="5">5
+              </div>
+              <div class="form-group">
+
+                  <input type="file" class="form-control input-lg" (change)="chonfile($event.target.files)"  #hinhanh='ngModel' name="HinhAnh" ngModel  />
+              </div>
+              <div class="form-group">
+                  <div [style.visibility]="'hidden'">
+                      <input type="radio" name="MaPhim" [(ngModel)]="phimCapNhat.MaPhim">
+                  </div>
+              </div>
+          <button type="submit" class="btn btn-custom btn-lg btn-block" data-dismiss="modal">Submit</button>
+        </form>
+    </div>
+</ng-template>
+
+<!-- model Thêm -->
+<ng-template #them let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3>Thêm Phim Mới</h3>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form #formThem='ngForm' (ngSubmit)="ThemPhim(formThem.value)">
+          <div class="form-group">
+            <input type="text" class="form-control input-lg" [pattern]='"^[a-zA-Z0-9_-]{3,25}$"' #tenphim='ngModel' required placeholder="Tên Phim" name="TenPhim" ngModel  />
+            <div *ngIf="tenphim.errors && (tenphim.touched || tenphim.dirty)">
+              <div class="alert alert-danger" *ngIf="tenphim.errors.required">
+                Vui Lòng Nhập Tên Phim!!!
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="textarea" class="form-control input-lg"  [pattern]='"^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+            "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+            "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"' #mota='ngModel' required placeholder="Mô Tả" name="MoTa" ngModel  />
+            <div *ngIf="mota.errors && (mota.touched || mota.dirty)">
+                <div class="alert alert-danger" *ngIf="mota.errors.required">
+                  Vui Lòng Nhập Mật Khẩu!!!
+                </div>
+              </div>
+          </div>
+          <div class="form-group">
+            <input type="date" class="form-control input-lg" #ngaychieu='ngModel' required  name="NgayKhoiChieu" ngModel  />
+            <div *ngIf="ngaychieu.errors && (ngaychieu.touched || ngaychieu.dirty)">
+                <div class="alert alert-danger" *ngIf="ngaychieu.errors.required">
+                  Vui Lòng Chọn ngày!!!
+                </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <input type="text" class="form-control input-lg"  #trailer='ngModel' placeholder="Trailer" name="Trailer" ngModel  />
+              <!-- <div *ngIf="tenphim.errors && (tenphim.touched || tenphim.dirty)">
+                <div class="alert alert-danger" *ngIf="tenphim.errors.required">
+                  Vui Lòng Chọn trailer!!!
+                </div>
+                
+                copy lên trên
+                [pattern]='"^[a-z0-9_-]{3,25}$"'
+              </div> -->
+            </div>          
+            <div class="form-group">
+              <input type="radio" name="MaNhom" [(ngModel)]="MaN" value="GP01">GP01
+              </div>
+              <div class="form-group">
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="1">1
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="2">2
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="3">3
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="4">4
+                  <input type="radio" name="DanhGia" [(ngModel)]="MaLoaiDG" value="5">5
+              </div>
+              <div class="form-group">
+                  <input type="file" class="form-control input-lg" (change)="chonfile($event.target.files)"  #hinhanh='ngModel' name="HinhAnh" ngModel  />
+              </div>
+              <div class="form-group">
+                  <div [style.visibility]="'hidden'">
+                      <input type="radio" name="MaPhim" [(ngModel)]="MaP">
+                  </div>
+              </div>
+          <button type="submit" class="btn btn-custom btn-lg btn-block">Submit</button>
+        </form>
+    </div>
+</ng-template>
+<!-- {{value | date : "dd/MM/yyyy"}} -->

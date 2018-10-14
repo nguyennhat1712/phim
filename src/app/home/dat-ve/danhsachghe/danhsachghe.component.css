@@ -1,0 +1,11 @@
+.mxauto{
+    margin: auto;
+}
+.cash{
+    width: 300px;
+    text-align: center;
+    color: greenyellow;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0);
+}

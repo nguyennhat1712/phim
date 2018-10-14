@@ -1,0 +1,10 @@
+<ng-container *ngIf="!ghe.DaDat else gheDatTruoc">
+  <button class="ghe" [ngClass]="{ChuaDat:!DangDat,DangDat:DangDat}" (click)="DatGhe(ghe.MaGhe,ghe.TenGhe,ghe.GiaVe,DangDat)">
+      {{ghe.TenGhe}}
+  </button>
+  <ng-content></ng-content>
+</ng-container>
+<!--Ghế đặt trước-->
+<ng-template #gheDatTruoc>
+  <button class="ghe DaDatTruoc" disabled="disabled">{{ghe.TenGhe}}</button>
+</ng-template>

@@ -1,0 +1,38 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Lịch Sử Đặt Vé</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div style="overflow-y: auto; height:350px; ">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Mã Ghế</th>
+          <th scope="col">Tên Phim</th>
+          <th scope="col">Rạp</th>
+          <th scope="col">Giá Vé</th>
+          <th scope="col">Ngày Đặt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ve of DanhSachVeDaDat">
+          <th scope="row">{{ve.MaGhe}}</th>
+          <td>{{ve.TenPhim}}</td>
+          <td>{{ve.Rap}}</td>
+          <td>{{ve.GiaVe}}</td>
+          <td>{{ve.NgayDat | date : "dd/MM/yyyy"}}</td>
+          
+        </tr>
+      </tbody>
+
+    </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
+  </div>
+</ng-template>
+<a class="nav-link" (click)="open(content)">Ticket</a>

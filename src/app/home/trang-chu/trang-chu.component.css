@@ -1,0 +1,240 @@
+.mgauto{
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+.gachchan{
+  border-bottom: 4px solid gray;
+}
+/* Search */
+.search-container{
+  width: 50%;
+}
+
+
+
+/* header */
+.title-header {padding: .75rem 1.25rem; background-color: #f5f5f5; border-bottom: 1px solid transparent;}
+.title-header h3 {font-size: 1rem; margin: 0;}
+.movies {margin-top: 2rem;}
+.img-card {width: 100%; margin-bottom: .40rem;}
+.img-card img{
+    width: 253px;
+    height: 400px;
+}
+.movies {margin-bottom: .60rem;}
+.series {margin-bottom: .60rem;}
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .demission {
+    padding: 5px;
+    width: 253px;
+    height: 50px;
+  }
+
+  .movie-container{
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+  }
+
+  /* ssssssssssssssssss */
+  .movie-card {
+    background: #ffffff;
+    box-shadow: 0px 6px 18px rgb(0, 0, 0);
+    width: 90%;
+    max-width: 320px;
+    margin: 1rem;
+    /* border-radius: 10px; */
+    display: inline-block;
+  }
+  
+  .movie-header {
+    padding: 0;
+    margin: 0;
+    height: 367px;
+    width: 100%;
+    display: block;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
+    background-size: cover;
+  }
+  
+  .header-icon-container {
+    position: relative;
+  }
+  
+  .header-icon {
+    width: 100%;
+    height: 367px;
+    line-height: 367px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: 54px;
+    text-shadow: 0px 0px 20px #6abcea, 0px 5px 20px #6ABCEA;
+    opacity: .85;
+  }
+  
+  .header-icon:hover {
+    background: rgba(0, 0, 0, 0.15);
+    font-size: 74px;
+    text-shadow: 0px 0px 20px #6abcea, 0px 5px 30px #6ABCEA;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    opacity: 1;
+  }
+  
+  .movie-card:hover {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+  }
+  
+  .movie-content {
+      height: 160px;
+    padding: 18px 18px 24px 18px;
+    margin: 0;
+  }
+  
+  .movie-content-header, .movie-info {
+    text-align: center;
+    display: table;
+    width: 100%;
+  }
+  
+  .movie-title {
+     
+      height: 60px;
+    font-size: 24px;
+    margin: 0;
+    display: table-cell;
+  }
+  
+  .movie-info {
+    margin-top: 1em;
+  }
+  
+  .info-section {
+    display: table-cell;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  .info-section:first-of-type {
+    text-align: left;
+  }
+  
+  .info-section:last-of-type {
+    text-align: right;
+  }
+  
+  .info-section label {
+    display: block;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: .5em;
+    font-size: 9px;
+  }
+  
+  .info-section span {
+    font-weight: 700;
+    font-size: 11px;
+  }
+  @media screen and (max-width: 1024px) {
+    
+  
+   
+  }
+  @media screen and (max-width: 992px) {
+    
+  
+   
+  }
+  @media screen and (max-width: 768px) {
+    .search-container{
+      width: 80%;
+    }
+    
+  
+    
+  }
+  @media screen and (max-width: 500px) {
+    .search-container{
+      width: 90%;
+    }
+  }
+  
+
+  .carousel-control.left,
+.carousel-control.right {
+	opacity: 1;
+	filter: alpha(opacity=100);
+	background-image: none;
+	background-repeat: no-repeat;
+	text-shadow: none;
+}
+
+.carousel-control.left span {
+    color: white;
+	padding: 15px;
+}
+
+.carousel-control.right span {
+    color: white;
+	padding: 15px;
+}
+
+.carousel-control .glyphicon-chevron-left, 
+.carousel-control .glyphicon-chevron-right, 
+.carousel-control .icon-prev, 
+.carousel-control .icon-next {
+	position: absolute;
+	top: 45%;
+	z-index: 5;
+	display: inline-block;
+}
+
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .icon-prev {
+	left: 0;
+}
+
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-next {
+	right: 0;
+}
+
+.carousel-control.left span,
+.carousel-control.right span {
+	background-color: #000;
+}
+
+.carousel-control.left span:hover,
+.carousel-control.right span:hover {
+	opacity: .7;
+	filter: alpha(opacity=70);
+}
+
+
+/* phim */
+.headerPhim h1{
+  color: #02970c;
+}
+/* Newws */
+.imgnews{
+  height: 325px;
+}
+
+/* footer */
+.bgfooter{
+  width: 100%;
+  height: 700px;
+  background-image: url(../../../assets/images/img2.jpg); 
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -1,0 +1,67 @@
+<div class="row mt-5">
+  <div class="col-sm-9">
+    <div class="row">
+      <div class="text-center mxauto ">
+        <img src="../../../../assets/images/screen.png" class="text-center col-12" alt="Màn Hình">
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="mxauto text-center">
+          <app-ghe *ngFor="let ghe of gheArray;let i = index " [ghe]="ghe" (eventDatGhe)="DatGhe($event)">
+            <ng-container *ngIf="(i+1)%8==0">
+              <br />
+            </ng-container>
+          </app-ghe>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="col-sm-3 ">
+      <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            <h4>Review Order</h4>
+          </div>
+          <div class="panel-body"></div>
+       
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                    <th scope="col">Tên Ghế</th>
+                    <th scope="col">Giá</th>
+                    </tr>
+                    </thead>
+              <tbody>
+              <tr *ngFor="let gheDuocChon of DanhSachGheDat">
+                  <th scope="row">{{gheDuocChon.TenGhe}}</th>
+                  <td>{{gheDuocChon.GiaVe}}<span>Vnđ</span></td>
+                </tbody>
+            </table>
+   
+          </div>
+    
+          <hr>
+          <div class="col-md-12">
+            <strong>Order Total</strong>
+            <div class="pull-right">
+              
+              <span>{{TongTien}}</span>
+              <span>Vnđ</span>
+            </div>
+            <hr>
+          </div>
+    
+          
+  </div>
+  </div>
+
+
+  
+  <!-- <p *ngFor="let gheDuocChon of DanhSachGheDuocDat">
+      <span>Tên Ghế: {{gheDuocChon.TenGhe}}</span>
+      <span>Giá Ghế: {{gheDuocChon.GiaVe}}</span>
+    </p> -->

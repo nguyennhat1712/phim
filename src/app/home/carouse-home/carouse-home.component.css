@@ -1,0 +1,24 @@
+.banner-carousel1{
+    width: 100%;
+    height: 580px;
+    background: url("../../../assets/images/banner1.jpg");
+    background-size: cover;
+}
+.banner-carousel2{
+    width: 100%;
+    height: 580px;
+    background: url("../../../assets/images/banner2.jpg");
+    background-size: cover;
+}
+.banner-carousel3{
+    width: 100%;
+    height: 580px;
+    background: url("../../../assets/images/banner3.jpg");
+    background-size: cover;
+}
+.banner-carousel4{
+    width: 100%;
+    height: 580px;
+    background: url("../../../assets/images/banner4.jpg");
+    background-size: cover ;
+}

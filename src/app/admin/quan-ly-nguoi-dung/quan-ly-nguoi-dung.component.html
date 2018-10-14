@@ -1,0 +1,206 @@
+<ngb-tabset>
+  <ngb-tab title="Quản Lý Người Dùng " class="tabheader">
+    <ng-template ngbTabContent>
+      <div class="row">
+        <div class="container">
+            <button class="btn bg-success text-white " (click)="openThem(themtk)">+Thêm Người Dùng</button>
+        </div>
+        
+      </div>
+      <div class="row scrooll">
+        <div class="col">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+
+                <th scope="col">Tài Khoản</th>
+                <th scope="col">Mật Khẩu</th>
+                <th scope="col">Email</th>
+                <th scope="col">Số ĐT</th>
+                <th scope="col">Mã Nhóm</th>
+                <th scope="col">Mã Loại</th>
+                <th scope="col">Họ Tên</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let taikhoan of dsTaiKhoan">
+
+                <td>{{taikhoan.TaiKhoan}}</td>
+                <td>{{taikhoan.MatKhau}}</td>
+                <td>{{taikhoan.Email}}</td>
+                <td>{{taikhoan.SoDT}}</td>
+                <td>{{taikhoan.MaNhom}}</td>
+                <td>{{taikhoan.MaLoai}}</td>
+                <td>{{taikhoan.HoTen}}</td>
+                <td> <button class="btn btn-info " (click)="openCapNhat(capnhattk,taikhoan)">Cập Nhật</button></td>
+                <td><button class="btn btn-danger" (click)="btnXoaTK(taikhoan.TaiKhoan)">Xóa</button></td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+      <ng-template ngbTabTitle class="tabheader ">Quản lý loại người dùng</ng-template>
+      <ng-template ngbTabContent>
+          <div class="row">
+              <div class="col">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+      
+                      <th scope="col">Mã Loại</th>
+                      <th scope="col">Lên Loại</th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let loai of dsLoai">
+      
+                      <td>{{loai.MaLoaiNguoiDung}}</td>
+                      <td>{{loai.TenLoai}}</td>
+                     
+                    </tr>
+                  </tbody>
+      
+                </table>
+      
+              </div>
+      
+            </div>
+      </ng-template>
+    </ngb-tab>
+</ngb-tabset>
+<ng-template #capnhattk let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Cập Nhật Tài Khoản</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form #formCapNhat='ngForm' (ngSubmit)="CapNhat(formCapNhat.value)">
+            <div class="form-group">
+              <input readonly type="text" class="form-control input-lg" [pattern]='"^[a-z0-9_-]{3,25}$"' #taikhoan='ngModel' required placeholder="UserName" name="TaiKhoan" [(ngModel)]="taiKhoan.TaiKhoan"   />
+              <div *ngIf="taikhoan.errors && (taikhoan.touched || taikhoan.dirty)">
+                <div class="alert alert-danger" *ngIf="taikhoan.errors.required">
+                  Vui Lòng Nhập Tài Khoản!!!
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input-lg" [pattern]='"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,20}$"' #matkhau='ngModel' minlength="6" maxlength="20" required placeholder="Password" name="MatKhau" [(ngModel)]="taiKhoan.MatKhau"  />
+              <div *ngIf="matkhau.errors && (matkhau.touched || matkhau.dirty)">
+                  <div class="alert alert-danger" *ngIf="matkhau.errors.required">
+                    Vui Lòng Nhập Mật Khẩu!!!
+                  </div>
+                  <div class="alert alert-danger" *ngIf="matkhau.errors.minlength || matkhau.errors.maxlength">
+                      Mật Khẩu Từ 6-20 Kí Tự!!!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" #hoten='ngModel' [pattern]='"^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+              "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+              "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"' required placeholder="Name" name="HoTen" [(ngModel)]="taiKhoan.HoTen"  />
+              <div *ngIf="hoten.errors && (hoten.touched || hoten.dirty)">
+                  <div class="alert alert-danger" *ngIf="hoten.errors.pattern">
+                    Vui Lòng Nhập Họ Tên là chữ!!!
+                  </div>
+                  
+                </div>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control input-lg" [pattern]='"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+              + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"' required placeholder="Email" name="Email" [(ngModel)]="taiKhoan.Email"  />
+            </div>
+            <div class="form-group">
+              <input type="tel" class="form-control input-lg" required placeholder="Mobile" name="SoDT" [(ngModel)]="taiKhoan.SoDT"  />
+         
+            </div> 
+            <div class="form-group">
+                <input type="radio" name="MaLoaiNguoiDung" [(ngModel)]="taiKhoan.MaLoaiNguoiDung" value="KhachHang">Khách Hàng
+                <input type="radio" name="MaLoaiNguoiDung" [(ngModel)]="taiKhoan.MaLoaiNguoiDung" value="QuanTri">Quản Lý
+              </div> 
+            <div [style.visibility]="'hidden'">
+              <div class="form-group">
+                <input type="radio" name="MaNhom" [(ngModel)]="MaN" value="GP01">GP01
+                </div>
+            </div>
+                      
+            <button type="submit" class="btn btn-outline-dark btn-lg btn-block">Submit</button>
+          </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+    </div>
+  </ng-template>
+  <ng-template #themtk let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Thêm Tài Khoản</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form #formDangKy='ngForm' (ngSubmit)="DangKy(formDangKy.value)">
+              <div class="form-group">
+                <input type="text" class="form-control input-lg" [pattern]='"^[a-z0-9_-]{3,25}$"' #taikhoan='ngModel' required placeholder="UserName" name="TaiKhoan" ngModel  />
+                <div *ngIf="taikhoan.errors && (taikhoan.touched || taikhoan.dirty)">
+                  <div class="alert alert-danger" *ngIf="taikhoan.errors.required">
+                    Vui Lòng Nhập Tài Khoản!!!
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control input-lg" [pattern]='"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,20}$"' #matkhau='ngModel' minlength="6" maxlength="20" required placeholder="Password" name="MatKhau" ngModel  />
+                <div *ngIf="matkhau.errors && (matkhau.touched || matkhau.dirty)">
+                    <div class="alert alert-danger" *ngIf="matkhau.errors.required">
+                      Vui Lòng Nhập Mật Khẩu!!!
+                    </div>
+                    <div class="alert alert-danger" *ngIf="matkhau.errors.minlength || matkhau.errors.maxlength">
+                        Mật Khẩu Từ 6-20 Kí Tự!!!
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control input-lg" #hoten='ngModel' [pattern]='"^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" +
+                "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" +
+                "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"' required placeholder="Name" name="HoTen" ngModel  />
+                <div *ngIf="hoten.errors && (hoten.touched || hoten.dirty)">
+                    <div class="alert alert-danger" *ngIf="hoten.errors.pattern">
+                      Vui Lòng Nhập Họ Tên là chữ!!!
+                    </div>
+                    
+                  </div>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control input-lg" [pattern]='"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"' required placeholder="Email" name="Email" ngModel  />
+              </div>
+              <div class="form-group">
+                <input type="tel" class="form-control input-lg" required placeholder="Mobile" name="SoDT" ngModel  />
+           
+              </div> 
+              <div class="form-group">
+                  <input type="radio" name="MaLoaiNguoiDung" ngModel value="KhachHang">Khách Hàng
+                  <input type="radio" name="MaLoaiNguoiDung" ngModel value="QuanTri">Quản Lý
+                </div> 
+              <div [style.visibility]="'hidden'">
+                <div class="form-group">
+                  <input type="radio" name="MaNhom" [(ngModel)]="MaN" value="GP01">GP01
+                  </div>
+              </div>
+                        
+              <button type="submit" class="btn btn-outline-dark btn-lg btn-block">Submit</button>
+            </form>
+      </div>
+    </ng-template>
+
+<!-- {{value | date : "dd/MM/yyyy"}} -->
